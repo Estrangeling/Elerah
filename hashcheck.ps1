@@ -1,0 +1,2 @@
+$hashcheck = import-csv "D:\MyScript\hashcheck.csv"
+$hashcheck | %{'(Get-FileHash -Path {0} -Algorithm {1}).hash -eq {2}' -f $($_.path+$_.name),$_.algorithm,$_.hash;(Get-FileHash -Path $($_.path +'\'+$_.name) -Algorithm $_.algorithm).hash -eq $_.hash}
